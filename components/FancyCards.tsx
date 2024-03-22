@@ -1,6 +1,63 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
+const styles = StyleSheet.create({
+  headingText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    paddingHorizontal: 15,
+    // borderWidth: 2,
+    // borderColor: "red",
+  },
+  card: {
+    width: 350,
+    height: 340,
+    borderRadius: 6,
+    marginVertical: 12,
+    marginHorizontal: 16,
+  },
+  cardElevated: {
+    backgroundColor: "#7B8788",
+    elevation: 4,
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
+  },
+  cardImage: {
+    height: 180,
+    marginBottom: 8,
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+  },
+  cardBody: {
+    flex: 1,
+    flexGrow: 1,
+    paddingHorizontal: 12,
+  },
+  cardTitle: {
+    color: "#ffffff",
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 6,
+  },
+  cardLabel: {
+    color: "#ffffff",
+    fontSize: 16,
+    marginBottom: 6,
+  },
+  cardDescription: {
+    color: "#f2f2f2",
+    fontSize: 12,
+    marginBottom: 12,
+    marginTop: 6,
+    flexShrink: 1,
+  },
+  cardFooter: {
+    color: "#ffffff",
+  },
+});
+
 const FancyCards = () => {
   return (
     <View>
@@ -19,7 +76,7 @@ const FancyCards = () => {
             Owerri is a city of luxury in Nigeria, Known for its luxurous hotels
             and lounges, when you speak luxury, you speak owerri
           </Text>
-          <Text style={styles.cardFooter}>COme have fun</Text>
+          <Text style={styles.cardFooter}>Come have fun</Text>
         </View>
       </View>
     </View>
@@ -27,21 +84,3 @@ const FancyCards = () => {
 };
 
 export default FancyCards;
-
-const styles = StyleSheet.create({
-  headingText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    paddingHorizontal: 15,
-    // borderWidth: 2,
-    // borderColor: "red",
-  },
-  card: {},
-  cardElevated: {},
-  cardImage: { height: 180 },
-  cardBody: {},
-  cardTitle: {},
-  cardLabel: {},
-  cardDescription: {},
-  cardFooter: {},
-});
