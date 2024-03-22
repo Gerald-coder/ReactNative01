@@ -35,15 +35,12 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   cardone: {
-    backgroundColor: "#ef5354",
     position: "relative",
   },
   cardtwo: {
-    backgroundColor: "#50dbb4",
     position: "relative",
   },
   cardthree: {
-    backgroundColor: "#5da3fa",
     position: "relative",
   },
   cardImage: {
