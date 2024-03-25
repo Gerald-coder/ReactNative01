@@ -11,8 +11,8 @@ const AppPro = () => {
       <ScrollView>
         <FlatCard />
         <ElevatedCards />
-        <FancyCards />
-        <FancyCards />
+        <FancyCards place={"Fancy Places"} />
+        <FancyCards place={"Relaxation"} />
         {/* <FancyCards /> */}
         <ActionCard />
       </ScrollView>

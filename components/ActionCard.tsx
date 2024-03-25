@@ -81,7 +81,7 @@ const openWebsite = (website: string) => {
 const ActionCard = () => {
   return (
     <View>
-      <Text style={styles.headingText}>ActionCard</Text>
+      <Text style={styles.headingText}>Rooms</Text>
       <View style={[styles.card, styles.cardElevated]}>
         <Text></Text>
         <View style={styles.headingContainer}>

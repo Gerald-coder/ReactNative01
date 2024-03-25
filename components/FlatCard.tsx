@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 const FlatCard = () => {
   return (
     <View>
-      <Text style={styles.headingText}>FlatCard</Text>
+      <Text style={styles.headingText}>Owerri</Text>
       <View style={styles.container}>
         <View style={[styles.card, styles.cardone]}>
           <Text style={styles.cardText}>FUTO</Text>

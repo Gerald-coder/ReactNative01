@@ -58,10 +58,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const FancyCards = () => {
+const FancyCards = ({ place }) => {
   return (
     <View>
-      <Text style={styles.headingText}>Fancy Places</Text>
+      <Text style={styles.headingText}>{place}</Text>
       <View style={[styles.card, styles.cardElevated]}>
         <Image
           source={{
