@@ -15,8 +15,8 @@ const AppPro = () => {
         <FancyCards place={"Fancy Places"} />
         <FancyCards place={"Relaxation"} />
         {/* <FancyCards /> */}
-        <ActionCard />
         <ContactList />
+        <ActionCard />
       </ScrollView>
     </SafeAreaView>
   );

@@ -41,8 +41,10 @@ const styles = StyleSheet.create({
     // borderColor: "red",
   },
   container: {
-    borderWidth: 2,
+    // borderWidth: 2,
     paddingHorizontal: 16,
+    marginBottom: 8,
+    paddingVertical: 8,
   },
   userCard: {
     flex: 1,
@@ -50,6 +52,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     gap: 10,
+    backgroundColor: "#0ff0ff",
+    padding: 8,
+    marginVertical: 2,
+    borderRadius: 8,
   },
   userImage: { width: 60, height: 60, borderRadius: 30 },
   userTexts: {
@@ -57,10 +63,13 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   userName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
+    // color: "#f2f2f2",
   },
-  userStatus: {},
+  userStatus: {
+    fontSize: 12,
+  },
 });
 
 const ContactList = () => {
