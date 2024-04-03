@@ -18,47 +18,94 @@ const PassWord = () => {
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
 
+  //   const generatePasswordString = (passwordLen: number) => {
+  //     let characterList = "";
+  //     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  //     const lowercase = "abcdefghijklmnopqrstuvwxyz";
+  //     const numbersChar = "0123456789";
+  //     const symbolsChar = "!@#$%^&*()_+";
+  //     if (lowerCase) {
+  //       characterList += lowercase;
+  //     }
+  //     if (upperCase) {
+  //       characterList += uppercase;
+  //     }
+  //     if (numbers) {
+  //       characterList += numbersChar;
+  //     }
+  //     if (symbols) {
+  //       characterList += symbolsChar;
+  //     }
+  //     const passwordResult = createPassword(characterList, passwordLen);
+  //     setPassword(passwordResult);
+  //     setIsPasswordGenerated(true);
+  //     //
+  //   };
+
+  //   const createPassword = (characters: string, passwordLen: number) => {
+  //     let result = "";
+  //     for (let i = 0; i < passwordLen; i++) {
+  //       const characterInd = Math.round(Math.random() * characters.length);
+  //       result += characters.charAt(characterInd);
+  //     }
+  //     return result;
+  //   };
+
+  //   const resetPassword = () => {
+  //     setPassword("");
+  //     setLowerCase(true);
+  //     setUpperCase(false);
+  //     setNumbers(false);
+  //     setSymbols(false);
+  //     setIsPasswordGenerated(false);
+
+  //     //
+  //   };
+
   const generatePasswordString = (passwordLen: number) => {
-    let characterList = "";
+    let charactersList;
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
-    const numbersChar = "0123456789";
+    const numbersChar = 1234567890;
     const symbolsChar = "!@#$%^&*()_+";
-    if (lowerCase) {
-      characterList += lowercase;
-    }
+
     if (upperCase) {
-      characterList += uppercase;
+      charactersList += uppercase;
+    }
+    if (lowerCase) {
+      charactersList += lowercase;
     }
     if (numbers) {
-      characterList += numbersChar;
+      charactersList += numbersChar;
     }
     if (symbols) {
-      characterList += symbolsChar;
+      charactersList += symbolsChar;
     }
-    const passwordResult = createPassword(characterList, passwordLen);
-    setPassword(passwordResult);
+
+    const passwordString = createPassword(charactersList, passwordLen);
+    setPassword(passwordString);
     setIsPasswordGenerated(true);
+
     //
   };
 
   const createPassword = (characters: string, passwordLen: number) => {
     let result = "";
     for (let i = 0; i < passwordLen; i++) {
-      const characterInd = Math.round(Math.random() * characters.length);
-      result += characters.charAt(characterInd);
+      const charInd = Math.round(Math.random() * characters.length);
+      result += characters.charAt(charInd);
     }
     return result;
+    //
   };
 
   const resetPassword = () => {
+    setIsPasswordGenerated(false);
     setPassword("");
-    setLowerCase(true);
-    setUpperCase(false);
+    setLowerCase(false);
     setNumbers(false);
     setSymbols(false);
-    setIsPasswordGenerated(false);
-
+    setUpperCase(false);
     //
   };
 
