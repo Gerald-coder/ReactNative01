@@ -1,6 +1,8 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import * as Yup from "yup";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { Formik } from "formik";
 
 export const passwordSchema = Yup.object().shape({
   passwordLen: Yup.number()
@@ -18,55 +20,11 @@ const PassWord = () => {
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
 
-  //   const generatePasswordString = (passwordLen: number) => {
-  //     let characterList = "";
-  //     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  //     const lowercase = "abcdefghijklmnopqrstuvwxyz";
-  //     const numbersChar = "0123456789";
-  //     const symbolsChar = "!@#$%^&*()_+";
-  //     if (lowerCase) {
-  //       characterList += lowercase;
-  //     }
-  //     if (upperCase) {
-  //       characterList += uppercase;
-  //     }
-  //     if (numbers) {
-  //       characterList += numbersChar;
-  //     }
-  //     if (symbols) {
-  //       characterList += symbolsChar;
-  //     }
-  //     const passwordResult = createPassword(characterList, passwordLen);
-  //     setPassword(passwordResult);
-  //     setIsPasswordGenerated(true);
-  //     //
-  //   };
-
-  //   const createPassword = (characters: string, passwordLen: number) => {
-  //     let result = "";
-  //     for (let i = 0; i < passwordLen; i++) {
-  //       const characterInd = Math.round(Math.random() * characters.length);
-  //       result += characters.charAt(characterInd);
-  //     }
-  //     return result;
-  //   };
-
-  //   const resetPassword = () => {
-  //     setPassword("");
-  //     setLowerCase(true);
-  //     setUpperCase(false);
-  //     setNumbers(false);
-  //     setSymbols(false);
-  //     setIsPasswordGenerated(false);
-
-  //     //
-  //   };
-
   const generatePasswordString = (passwordLen: number) => {
     let charactersList;
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
-    const numbersChar = 1234567890;
+    const numbersChar = "1234567890";
     const symbolsChar = "!@#$%^&*()_+";
 
     if (upperCase) {
@@ -111,10 +69,66 @@ const PassWord = () => {
 
   // NEXT FORMIK
 
+  const styles = StyleSheet.create({
+    appContainer: {
+      marginHorizontal: 18,
+      marginTop: 80,
+      borderWidth: 4,
+      borderColor: "red",
+      fontSize: 16,
+    },
+    formContainer: {},
+    title: {},
+  });
+
   return (
-    <SafeAreaView>
-      <Text>PassWord</Text>
-    </SafeAreaView>
+    <ScrollView keyboardShouldPersistTaps="handled">
+      <SafeAreaView style={styles.appContainer}>
+        <View style={styles.formContainer}>
+          <Text style={styles.title}>Password Generator</Text>
+          <Formik
+            initialValues={{ papasswordLen: "" }}
+            validationSchema={passwordSchema}
+            onSubmit={(values) => {
+              generatePasswordString(values.papasswordLen); ///TODO
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+                {errors.email && touched.email && errors.email}
+                <input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+                {errors.password && touched.password && errors.password}
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+              </form>
+            )}
+          </Formik>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
