@@ -1,4 +1,12 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import React, { useState } from "react";
 import * as Yup from "yup";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
@@ -72,13 +80,30 @@ const PassWord = () => {
   const styles = StyleSheet.create({
     appContainer: {
       marginHorizontal: 18,
-      marginTop: 80,
-      borderWidth: 4,
+      marginVertical: 40,
+      borderWidth: 1,
       borderColor: "red",
-      fontSize: 16,
+      flex: 1,
+      alignItems: "flex-start",
+      padding: 6,
     },
     formContainer: {},
-    title: {},
+    title: {
+      fontSize: 30,
+      flex: 1,
+      alignItems: "center",
+      gap: 10,
+      justifyContent: "center",
+    },
+    inputWrapper: {},
+    inputColumn: {},
+    inputStyle: {
+      height: 45,
+      width: 120,
+      borderWidth: 2,
+      padding: 6,
+      borderRadius: 10,
+    },
   });
 
   return (
@@ -87,10 +112,10 @@ const PassWord = () => {
         <View style={styles.formContainer}>
           <Text style={styles.title}>Password Generator</Text>
           <Formik
-            initialValues={{ papasswordLen: "" }}
+            initialValues={{ passwordLen: "" }}
             validationSchema={passwordSchema}
             onSubmit={(values) => {
-              generatePasswordString(values.papasswordLen); ///TODO
+              generatePasswordString(+values.passwordLen); ///TODO
             }}
           >
             {({
@@ -101,29 +126,36 @@ const PassWord = () => {
               handleBlur,
               handleSubmit,
               isSubmitting,
+              handleReset,
+              isValid,
               /* and other goodies */
             }) => (
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                />
-                {errors.email && touched.email && errors.email}
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                />
-                {errors.password && touched.password && errors.password}
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-              </form>
+              <>
+                <View style={styles.inputWrapper}>
+                  <View style={styles.inputColumn}>
+                    <TextInput
+                      keyboardType="numeric"
+                      style={styles.inputStyle}
+                      value={values.passwordLen}
+                      onChangeText={handleChange("passwordLen")}
+                    />
+                  </View>
+                </View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}></View>
+
+                <View style={styles.inputWrapper}>
+                  <TouchableOpacity>
+                    <Text>Generate Password</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text>Reset</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
             )}
           </Formik>
         </View>
