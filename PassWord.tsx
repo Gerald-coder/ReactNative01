@@ -29,7 +29,7 @@ const PassWord = () => {
   const [symbols, setSymbols] = useState(false);
 
   const generatePasswordString = (passwordLen: number) => {
-    let charactersList;
+    let charactersList = "";
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
     const numbersChar = "1234567890";
@@ -129,9 +129,30 @@ const PassWord = () => {
       padding: 5,
       backgroundColor: "#0001FF",
     },
+    secondaryBtn: {
+      borderWidth: 2,
+      borderRadius: 6,
+      padding: 5,
+      backgroundColor: "orange",
+    },
+    secondaryBtnText: {
+      fontSize: 20,
+      color: "#f2f2f3",
+    },
     heading: {
       fontSize: 20,
     },
+    passwordText: {
+      fontSize: 20,
+      flex: 1,
+      alignItems: "center",
+      gap: 10,
+      justifyContent: "flex-end",
+    },
+    card: {},
+    cardElevated: {},
+    subTitle: {},
+    description: {},
   });
 
   return (
@@ -143,7 +164,8 @@ const PassWord = () => {
             initialValues={{ passwordLen: "" }}
             validationSchema={passwordSchema}
             onSubmit={(values) => {
-              generatePasswordString(+values.passwordLen); ///TODO
+              console.log(values);
+              generatePasswordString(+values.passwordLen);
             }}
           >
             {({
@@ -220,13 +242,28 @@ const PassWord = () => {
                   >
                     <Text style={styles.primaryBtnText}>Generate Password</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity>
-                    <Text style={}>Reset</Text>
+                  <TouchableOpacity
+                    style={styles.secondaryBtn}
+                    onPress={() => {
+                      handleReset();
+                      resetPassword();
+                    }}
+                  >
+                    <Text style={styles.secondaryBtnText}>Reset</Text>
                   </TouchableOpacity>
                 </View>
               </>
             )}
           </Formik>
+          {isPasswordGenerated ? (
+            <View style={[styles.card, styles.cardElevated]}>
+              <Text style={styles.subTitle}>Result: </Text>
+              <Text style={styles.description}>Long press to copy: </Text>
+              <Text style={styles.passwordText} selectable>
+                {password}
+              </Text>
+            </View>
+          ) : null}
         </View>
       </SafeAreaView>
     </ScrollView>
