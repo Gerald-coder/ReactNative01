@@ -79,30 +79,50 @@ const PassWord = () => {
 
   const styles = StyleSheet.create({
     appContainer: {
-      marginHorizontal: 18,
-      marginVertical: 40,
-      borderWidth: 1,
-      borderColor: "red",
+      //   marginHorizontal: 18,
+      //   marginVertical: 40,
+      //   borderWidth: 1,
+      //   borderColor: "red",
+      //   flex: 1,
+      //   alignItems: "flex-start",
+      padding: 10,
+      //   width: "auto",
+    },
+    formContainer: {
       flex: 1,
-      alignItems: "flex-start",
+      alignItems: "center",
+      gap: 4,
       padding: 6,
     },
-    formContainer: {},
     title: {
       fontSize: 30,
       flex: 1,
       alignItems: "center",
       gap: 10,
-      justifyContent: "center",
+      justifyContent: "flex-end",
+      //   width: "100%",
     },
     inputWrapper: {},
     inputColumn: {},
     inputStyle: {
       height: 45,
-      width: 120,
+      width: 200,
       borderWidth: 2,
       padding: 6,
       borderRadius: 10,
+    },
+    formAction: {
+      alignSelf: "center",
+      width: 200,
+      flex: 1,
+      gap: 4,
+      alignItems: "center",
+    },
+    Txt: {
+      fontSize: 21,
+      borderWidth: 2,
+      borderRadius: 6,
+      padding: 4,
     },
   });
 
@@ -138,6 +158,7 @@ const PassWord = () => {
                       style={styles.inputStyle}
                       value={values.passwordLen}
                       onChangeText={handleChange("passwordLen")}
+                      placeholder="Ex. *******"
                     />
                   </View>
                 </View>
@@ -147,12 +168,12 @@ const PassWord = () => {
                 <View style={styles.inputWrapper}></View>
                 <View style={styles.inputWrapper}></View>
 
-                <View style={styles.inputWrapper}>
+                <View style={styles.formAction}>
                   <TouchableOpacity>
-                    <Text>Generate Password</Text>
+                    <Text style={styles.Txt}>Generate Password</Text>
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Text>Reset</Text>
+                    <Text style={styles.Txt}>Reset</Text>
                   </TouchableOpacity>
                 </View>
               </>
