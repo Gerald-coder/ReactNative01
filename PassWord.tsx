@@ -23,7 +23,7 @@ const PassWord = () => {
   const [password, setPassword] = useState("");
   const [isPasswordGenerated, setIsPasswordGenerated] = useState(false);
 
-  const [lowerCase, setLowerCase] = useState(true);
+  const [lowerCase, setLowerCase] = useState(false);
   const [upperCase, setUpperCase] = useState(false);
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
@@ -83,8 +83,9 @@ const PassWord = () => {
       //   marginVertical: 40,
       //   borderWidth: 1,
       //   borderColor: "red",
-      //   flex: 1,
-      //   alignItems: "flex-start",
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
       padding: 10,
       //   width: "auto",
     },
@@ -95,18 +96,27 @@ const PassWord = () => {
       padding: 6,
     },
     title: {
-      fontSize: 30,
+      fontSize: 40,
       flex: 1,
       alignItems: "center",
       gap: 10,
       justifyContent: "flex-end",
       //   width: "100%",
     },
-    inputWrapper: {},
+    inputWrapper: {
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: 4,
+      padding: 4,
+      width: 300,
+    },
+
     inputColumn: {},
     inputStyle: {
       height: 45,
-      width: 200,
+      width: 80,
       borderWidth: 2,
       padding: 6,
       borderRadius: 10,
@@ -123,6 +133,9 @@ const PassWord = () => {
       borderWidth: 2,
       borderRadius: 6,
       padding: 4,
+    },
+    heading: {
+      fontSize: 20,
     },
   });
 
@@ -153,18 +166,46 @@ const PassWord = () => {
               <>
                 <View style={styles.inputWrapper}>
                   <View style={styles.inputColumn}>
-                    <TextInput
-                      keyboardType="numeric"
-                      style={styles.inputStyle}
-                      value={values.passwordLen}
-                      onChangeText={handleChange("passwordLen")}
-                      placeholder="Ex. *******"
-                    />
+                    <Text style={styles.heading}>Password Length</Text>
+                    {touched.passwordLen && errors.passwordLen && (
+                      <Text>{errors.passwordLen} </Text>
+                    )}
                   </View>
+                  <TextInput
+                    keyboardType="numeric"
+                    style={styles.inputStyle}
+                    value={values.passwordLen}
+                    onChangeText={handleChange("passwordLen")}
+                    placeholder="Ex. ********"
+                  />
                 </View>
-                <View style={styles.inputWrapper}></View>
-                <View style={styles.inputWrapper}></View>
-                <View style={styles.inputWrapper}></View>
+                <View style={styles.inputWrapper}>
+                  <Text>Include lowercase</Text>
+                  <BouncyCheckbox
+                    fillColor="#29AB87"
+                    disableBuiltInState
+                    onPress={() => setLowerCase(!lowerCase)}
+                    isChecked={lowerCase}
+                  />
+                </View>
+                <View style={styles.inputWrapper}>
+                  <Text>Include uppercase</Text>
+                  <BouncyCheckbox
+                    fillColor="#C9A0DC"
+                    disableBuiltInState
+                    onPress={() => setUpperCase(!upperCase)}
+                    isChecked={upperCase}
+                  />
+                </View>
+                <View style={styles.inputWrapper}>
+                  <Text>Include uppercase</Text>
+                  <BouncyCheckbox
+                    fillColor="#FC80A5"
+                    disableBuiltInState
+                    onPress={() => setNumbers(!numbers)}
+                    isChecked={numbers}
+                  />
+                </View>
                 <View style={styles.inputWrapper}></View>
                 <View style={styles.inputWrapper}></View>
 
