@@ -79,15 +79,10 @@ const PassWord = () => {
 
   const styles = StyleSheet.create({
     appContainer: {
-      //   marginHorizontal: 18,
-      //   marginVertical: 40,
-      //   borderWidth: 1,
-      //   borderColor: "red",
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
       padding: 10,
-      //   width: "auto",
     },
     formContainer: {
       flex: 1,
@@ -101,7 +96,6 @@ const PassWord = () => {
       alignItems: "center",
       gap: 10,
       justifyContent: "flex-end",
-      //   width: "100%",
     },
     inputWrapper: {
       flex: 1,
@@ -128,11 +122,12 @@ const PassWord = () => {
       gap: 4,
       alignItems: "center",
     },
-    Txt: {
-      fontSize: 21,
+    primaryBtnText: { fontSize: 20, color: "#f2f2f2" },
+    primaryBtn: {
       borderWidth: 2,
       borderRadius: 6,
-      padding: 4,
+      padding: 5,
+      backgroundColor: "#0001FF",
     },
     heading: {
       fontSize: 20,
@@ -168,7 +163,9 @@ const PassWord = () => {
                   <View style={styles.inputColumn}>
                     <Text style={styles.heading}>Password Length</Text>
                     {touched.passwordLen && errors.passwordLen && (
-                      <Text>{errors.passwordLen} </Text>
+                      <Text style={{ color: "red" }}>
+                        {errors.passwordLen}{" "}
+                      </Text>
                     )}
                   </View>
                   <TextInput
@@ -180,7 +177,7 @@ const PassWord = () => {
                   />
                 </View>
                 <View style={styles.inputWrapper}>
-                  <Text>Include lowercase</Text>
+                  <Text>Include Lowercase</Text>
                   <BouncyCheckbox
                     fillColor="#29AB87"
                     disableBuiltInState
@@ -189,7 +186,7 @@ const PassWord = () => {
                   />
                 </View>
                 <View style={styles.inputWrapper}>
-                  <Text>Include uppercase</Text>
+                  <Text>Include Uppercase</Text>
                   <BouncyCheckbox
                     fillColor="#C9A0DC"
                     disableBuiltInState
@@ -198,7 +195,7 @@ const PassWord = () => {
                   />
                 </View>
                 <View style={styles.inputWrapper}>
-                  <Text>Include uppercase</Text>
+                  <Text>Include Numbers</Text>
                   <BouncyCheckbox
                     fillColor="#FC80A5"
                     disableBuiltInState
@@ -206,15 +203,25 @@ const PassWord = () => {
                     isChecked={numbers}
                   />
                 </View>
-                <View style={styles.inputWrapper}></View>
-                <View style={styles.inputWrapper}></View>
-
+                <View style={styles.inputWrapper}>
+                  <Text>Include Symbols</Text>
+                  <BouncyCheckbox
+                    fillColor="#FED85D"
+                    disableBuiltInState
+                    onPress={() => setSymbols(!symbols)}
+                    isChecked={symbols}
+                  />
+                </View>
                 <View style={styles.formAction}>
-                  <TouchableOpacity>
-                    <Text style={styles.Txt}>Generate Password</Text>
+                  <TouchableOpacity
+                    style={styles.primaryBtn}
+                    disabled={!isValid}
+                    onPress={() => handleSubmit()}
+                  >
+                    <Text style={styles.primaryBtnText}>Generate Password</Text>
                   </TouchableOpacity>
                   <TouchableOpacity>
-                    <Text style={styles.Txt}>Reset</Text>
+                    <Text style={}>Reset</Text>
                   </TouchableOpacity>
                 </View>
               </>
