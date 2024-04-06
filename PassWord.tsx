@@ -158,12 +158,14 @@ const PassWord = () => {
             validationSchema={passwordSchema}
             onSubmit={(values) => {
               console.log("gery");
+              generatePasswordString(+values.passwordLen);
             }}
           >
             {({
               values,
               isSubmitting,
               handleChange,
+              handleSubmit,
               handleReset,
               isValid,
               errors,
@@ -188,7 +190,56 @@ const PassWord = () => {
                       onChangeText={() => handleChange("passwordLen")}
                     />
                   </View>
-                  <View style={styles.inputWrapper}></View>
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.heading}>include numbers</Text>
+                    <BouncyCheckbox
+                      fillColor="orange"
+                      onPress={() => setNumbers(!numbers)}
+                    />
+                  </View>
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.heading}>include symbols</Text>
+                    <BouncyCheckbox
+                      fillColor="green"
+                      onPress={() => setSymbols(!symbols)}
+                    />
+                  </View>
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.heading}>include uppercase</Text>
+                    <BouncyCheckbox
+                      fillColor="red"
+                      onPress={() => setUpperCase(!uppercase)}
+                    />
+                  </View>
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.heading}>include lowerCase</Text>
+                    <BouncyCheckbox
+                      fillColor="pink"
+                      onPress={() => setLowerCase(!lowercase)}
+                    />
+                  </View>
+                  <View style={styles.formAction}>
+                    <View style={styles.primaryBtn}>
+                      <Text
+                        style={styles.primaryBtnText}
+                        onPress={() => handleSubmit()}
+                        disabled={!isValid}
+                      >
+                        Generate Password
+                      </Text>
+                    </View>
+                    <View style={styles.secondaryBtn}>
+                      <Text
+                        style={styles.secondaryBtnText}
+                        onPress={() => {
+                          handleReset();
+                          resetPassword();
+                        }}
+                      >
+                        Reset
+                      </Text>
+                    </View>
+                  </View>
                 </>
               );
             }}
