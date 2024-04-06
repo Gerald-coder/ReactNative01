@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import { Formik } from "formik";
@@ -136,6 +137,7 @@ const PassWord = () => {
     }
 
     const passwordString = createPassword(charactersList, passwordLen);
+    setPassword(passwordString);
     setIsPasswordGenerated(true);
   };
 
@@ -157,8 +159,9 @@ const PassWord = () => {
             initialValues={{ passwordLen: "" }}
             validationSchema={passwordSchema}
             onSubmit={(values) => {
-              console.log("gery");
+              //   console.log("gery");
               generatePasswordString(+values.passwordLen);
+              values.passwordLen = "";
             }}
           >
             {({
@@ -187,12 +190,14 @@ const PassWord = () => {
                       keyboardType="numeric"
                       style={styles.inputStyle}
                       value={values.passwordLen}
-                      onChangeText={() => handleChange("passwordLen")}
+                      onChangeText={handleChange("passwordLen")}
                     />
                   </View>
                   <View style={styles.inputWrapper}>
                     <Text style={styles.heading}>include numbers</Text>
                     <BouncyCheckbox
+                      disableBuiltInState
+                      isChecked={numbers}
                       fillColor="orange"
                       onPress={() => setNumbers(!numbers)}
                     />
@@ -200,6 +205,8 @@ const PassWord = () => {
                   <View style={styles.inputWrapper}>
                     <Text style={styles.heading}>include symbols</Text>
                     <BouncyCheckbox
+                      isChecked={symbols}
+                      disableBuiltInState
                       fillColor="green"
                       onPress={() => setSymbols(!symbols)}
                     />
@@ -207,6 +214,8 @@ const PassWord = () => {
                   <View style={styles.inputWrapper}>
                     <Text style={styles.heading}>include uppercase</Text>
                     <BouncyCheckbox
+                      isChecked={uppercase}
+                      disableBuiltInState
                       fillColor="red"
                       onPress={() => setUpperCase(!uppercase)}
                     />
@@ -214,21 +223,25 @@ const PassWord = () => {
                   <View style={styles.inputWrapper}>
                     <Text style={styles.heading}>include lowerCase</Text>
                     <BouncyCheckbox
+                      isChecked={lowercase}
+                      disableBuiltInState
                       fillColor="pink"
                       onPress={() => setLowerCase(!lowercase)}
                     />
                   </View>
                   <View style={styles.formAction}>
-                    <View style={styles.primaryBtn}>
+                    <TouchableOpacity style={styles.primaryBtn}>
                       <Text
                         style={styles.primaryBtnText}
-                        onPress={() => handleSubmit()}
+                        onPress={() => {
+                          return handleSubmit();
+                        }}
                         disabled={!isValid}
                       >
                         Generate Password
                       </Text>
-                    </View>
-                    <View style={styles.secondaryBtn}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.secondaryBtn}>
                       <Text
                         style={styles.secondaryBtnText}
                         onPress={() => {
@@ -238,12 +251,20 @@ const PassWord = () => {
                       >
                         Reset
                       </Text>
-                    </View>
+                    </TouchableOpacity>
                   </View>
                 </>
               );
             }}
           </Formik>
+          {isPasswordGenerated ? (
+            <View style={[styles.card, styles.cardElevated]}>
+              <Text style={styles.subTitle}> Result is :</Text>
+              <Text style={styles.title} selectable>
+                {password}
+              </Text>
+            </View>
+          ) : null}
         </View>
       </SafeAreaView>
     </ScrollView>
